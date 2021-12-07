@@ -13,3 +13,6 @@ target/
 # Vim
 *.swp
 
+# Mac OS
+.DS_Store
+
