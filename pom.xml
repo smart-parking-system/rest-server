@@ -99,11 +99,6 @@
       <artifactId>postgresql</artifactId>
       <version>42.2.24.jre7</version>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>mysql</groupId>-->
-<!--      <artifactId>mysql-connector-java</artifactId>-->
-<!--      <version>8.0.24</version>-->
-<!--    </dependency>-->
     <dependency>
       <groupId>net.sourceforge.pmd</groupId>
       <artifactId>pmd-scala_2.13</artifactId>
