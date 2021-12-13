@@ -25,24 +25,5 @@ class ParkingController extends Controller[Parking, ParkingDto] {
   @GetMapping
   def getAllParkings(): ResponseEntity[java.util.List[ParkingDto]] =
     new ResponseEntity(parkingService.getAll().map(new ParkingDto(_)).asJava, HttpStatus.OK)
-
-  @PostMapping
-  def createParking(@RequestBody parking: Parking): ResponseEntity[ParkingDto] =
-    new ResponseEntity(new ParkingDto(parkingService.create(parking)), HttpStatus.OK)
-
-  @PutMapping(path = Array("/{id}"))
-  def updateParking(@PathVariable("id") id: Int, @RequestBody parking: Parking): ResponseEntity[ParkingDto] = parkingService.get(id) match {
-    case Some(value) =>
-      parking.id = id
-      new ResponseEntity(new ParkingDto(parkingService.create(parking)), HttpStatus.OK)
-    case None =>
-      new ResponseEntity(HttpStatus.NOT_FOUND)
-  }
-
-  @DeleteMapping(path = Array("/{id}"))
-  def deleteParking(@PathVariable("id") id: Int): ResponseEntity[Parking] = {
-    parkingService.delete(id)
-    ResponseEntity.noContent().build()
-  }
 }
 

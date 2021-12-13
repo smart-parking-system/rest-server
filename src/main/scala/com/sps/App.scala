@@ -19,7 +19,6 @@ object App {
       return
     }
 
-    implicit var config = Config()
     var index = -1
 
     if (args.contains("-c")) {
@@ -30,7 +29,7 @@ object App {
 
     if (index != -1) {
       println(s"Config file: ${args(index)}")
-      config = Config.fromFile(args(index))
+      Config.set(Config.fromFile(args(index)))
     }
 
     println(s"SPS Rest Server v${Server.VERSION}\n")

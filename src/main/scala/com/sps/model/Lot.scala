@@ -7,7 +7,6 @@ import javax.persistence.*
 class Lot extends Model {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   var id: Int = 0
   var parkingId: Int = 0
   var status: Int = 0

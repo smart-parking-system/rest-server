@@ -7,7 +7,6 @@ import javax.persistence.*
 class Parking extends Model {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   var id: Int = 0
   var name: String = ""
   var location: String = ""
