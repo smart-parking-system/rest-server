@@ -32,13 +32,12 @@ class LotController extends Controller[Lot, LotDto] {
   @PostMapping
   def createLot(@RequestHeader("X_SPS_USER_DATA") userData: String,
                 @RequestBody lot: Lot): ResponseEntity[LotDto] =
-    Controller.executeAuthenticated(userData, new ResponseEntity(new LotDto(lotService.create(lot)), HttpStatus.OK))
-      .asInstanceOf[ResponseEntity[LotDto]]
+    Controller.executeAuthenticated[LotDto](userData, new ResponseEntity(new LotDto(lotService.create(lot)), HttpStatus.OK))
 
   @PutMapping(path = Array("/{id}"))
   def updateLot(@RequestHeader("X_SPS_USER_DATA") userData: String,
                 @PathVariable("id") id: Int, @RequestBody lot: Lot): ResponseEntity[LotDto] =
-    Controller.executeAuthenticated(userData, {
+    Controller.executeAuthenticated[LotDto](userData, {
       lotService.get(id) match {
         case Some(value) =>
           lot.id = id
@@ -46,13 +45,13 @@ class LotController extends Controller[Lot, LotDto] {
         case None =>
           new ResponseEntity(HttpStatus.NOT_FOUND)
       }
-    }).asInstanceOf[ResponseEntity[LotDto]]
+    })
 
   @DeleteMapping(path = Array("/{id}"))
   def deleteLot(@RequestHeader("X_SPS_USER_DATA") userData: String,
                 @PathVariable("id") id: Int): ResponseEntity[LotDto] =
-    Controller.executeAuthenticated(userData, {
+    Controller.executeAuthenticated[LotDto](userData, {
       lotService.delete(id)
       ResponseEntity.noContent().build()
-    }).asInstanceOf[ResponseEntity[LotDto]]
+    })
 }
